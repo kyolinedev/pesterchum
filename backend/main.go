@@ -15,6 +15,7 @@ func main() {
 
 	for {
 		conn, err := ln.Accept()
+		fmt.Println("Recieved connection")
 
 		if err != nil {
 			fmt.Println("Failed to fetch connection! Ignoring...")
