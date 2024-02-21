@@ -117,3 +117,6 @@ lib/generated_plugin_registrant.dart
 go.work
 
 # End of https://www.toptal.com/developers/gitignore/api/go,dart,flutter
+
+# Output files
+pesterchum
