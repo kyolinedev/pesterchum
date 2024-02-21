@@ -7,4 +7,5 @@ mkShell {
     dart
     flutter
   ];
+  shellHook = "export GPG_TTY=$(tty)";
 }
