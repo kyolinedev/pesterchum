@@ -1,8 +1,28 @@
 package main
 
-import "fmt"
-import "net"
-import "os"
+import (
+	"errors"
+	"fmt"
+	"net"
+	"os"
+)
+
+func numPack(packNum int) ([]byte, error) {
+	list := []byte{}
+
+	if packNum > 65535 {
+		return list, errors.New("number > 65535")
+	}
+
+	list = append(list, uint8(packNum/256))
+	list = append(list, uint8(packNum%256))
+
+	return list, nil
+}
+
+func numUnpack(packData []byte) int {
+	return (int(packData[0])*256) + int(packData[1])
+}
 
 func main() {
 	ln, err := net.Listen("tcp", ":8000")
@@ -27,5 +47,6 @@ func main() {
 }
 
 func handleClient(conn net.Conn) {
+	conn.Write([]byte("Hello, world!"))
 	defer conn.Close()
 }
