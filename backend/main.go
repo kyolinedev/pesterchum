@@ -8,20 +8,20 @@ import (
 )
 
 func numPack(packNum int) ([]byte, error) {
-	list := []byte{}
-
 	if packNum > 65535 {
-		return list, errors.New("number > 65535")
+		return []byte{}, errors.New("number > 65535")
 	}
 
-	list = append(list, uint8(packNum/256))
-	list = append(list, uint8(packNum%256))
+	list := []byte{
+		uint8(packNum / 256),
+		uint8(packNum % 256),
+	}
 
 	return list, nil
 }
 
 func numUnpack(packData []byte) int {
-	return (int(packData[0])*256) + int(packData[1])
+	return (int(packData[0]) * 256) + int(packData[1])
 }
 
 func main() {
